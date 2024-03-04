@@ -1,9 +1,22 @@
-
+import { useAuthContext } from "./context";
 
 export default function Login(){
 
-    const submitLogin = () => {
-        console.log("login");
+    //const { setAuthToken, setType } = useAuthContext(); Causes error -- investigate more...
+
+    const submitLogin = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        const form = event.target as typeof event.target & {
+            email: {value: string},
+            password: {value: string}
+        };
+        const email = form.email.value;
+        const password = form.password.value;
+        doLogin(email, password);
+    }
+
+    const doLogin = (email: string, password: string) => {
+        
     }
 
     return(
