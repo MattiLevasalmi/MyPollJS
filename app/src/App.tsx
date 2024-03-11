@@ -4,6 +4,8 @@ import Start from './Start'
 import './App.css'
 import { authContext } from './context'
 import { useState } from 'react'
+import ManagePolls from './ManagePolls'
+import CreatePoll from './CreatePoll'
 
 
 function App() {
@@ -19,9 +21,17 @@ function App() {
             path="/"
             element={<Start />}
           />
-        <Route
+          <Route
             path="/Login"
             element={<Login />}
+          />
+          <Route
+            path="/managePoll"
+            element={<ManagePolls />}
+          />
+          <Route
+            path="/createPoll"
+            element={<CreatePoll />}
           />
         </Routes>
       </BrowserRouter>
