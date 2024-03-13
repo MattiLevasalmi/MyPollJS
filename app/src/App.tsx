@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './Login'
 import Start from './Start'
 import './App.css'
-import { authContext } from './context'
+import { authContext, poll } from './context'
 import { useState } from 'react'
 import ManagePolls from './ManagePolls'
 import CreatePoll from './CreatePoll'
@@ -12,9 +12,10 @@ function App() {
   
   const [authToken, setAuthToken] = useState<string>("");
   const [type, setType] = useState<string>("");
+  const [polls] = useState<poll[]>([]);
 
   return (
-    <authContext.Provider value={{authToken, setAuthToken, type, setType}}>
+    <authContext.Provider value={{authToken, setAuthToken, type, setType, polls}}>
       <BrowserRouter>
         <Routes>
           <Route
