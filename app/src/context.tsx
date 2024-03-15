@@ -11,7 +11,7 @@ export interface auth {
 
 export type question = {
     question: string,
-    answers: {answer: string, count: number}
+    answers: {answer: string, count: number}[]
 }
 
 export type poll = {

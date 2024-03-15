@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { question } from "./context";
 import { useState } from "react";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 
 
 export default function CreatePoll(){
@@ -17,39 +18,72 @@ export default function CreatePoll(){
 
     const addQuestion = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        alert("Submitted");
+        const form = event.target as typeof event.target & {
+            questionId: {value: string},
+            answerOne: {value: string},
+            answerTwo: {value: string}
+        };
+        const question = form.questionId.value;
+        const answerOne = form.answerOne.value;
+        const answerTwo = form.answerTwo.value;
+        questions.push({
+            question: question,
+            answers: [{answer: answerOne, count: 0}, {answer: answerTwo, count: 0}]
+        })
+    }
+
+    const addPoll = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        alert("Submitted Poll");
     }
 
     return(
         <>
             <h1>Create a New Poll</h1>
-            <Paper sx={{ m: 2, p: 2 }}>
-                <Stack spacing={2}>
-                    <Stack direction="row" spacing={2}>
-                        <TextField id="pollName" label="Poll Name" variant="outlined"/>
-                        <TextField id="pollDesc" label="Poll Description" variant="outlined" multiline/>
-                    </Stack>
-                    <Divider variant="middle" />
-                    <TextField id="question" label="Question" variant="outlined"/>
-                    <Stack direction="row" spacing={2}>
-                        <TextField id="Answer1" label="Answer One" variant="outlined"/>
-                        <TextField id="Answer2" label="Answer Two" variant="outlined"/>
-                    </Stack>
-                    <Button variant="outlined">Add Question</Button>
+            <Stack spacing={2}>
+                <Stack direction="row" spacing={2}>
+                    <Paper sx={{ m: 2, p: 2 }}>
+                        <form onSubmit={addPoll}>
+                            <Stack spacing={2}>
+                                <TextField id="pollName" label="Poll Name" variant="outlined" required/>
+                                <TextField id="pollDesc" label="Poll Description" variant="outlined" multiline rows={3}/>
+                                <Divider variant="middle" />
+                                <Button variant="outlined" type="submit">Create Poll</Button>
+                            </Stack>
+                        </form>
+                    </Paper>
+                    <Paper sx={{ m: 2, p: 2 }}>
+                        <form onSubmit={addQuestion}>
+                            <Stack spacing={2}>
+                                <TextField id="questionId" label="Question" variant="outlined" required/>
+                                <Stack direction="row" spacing={2}>
+                                    <TextField id="answerOne" label="Answer One" variant="outlined" required/>
+                                    <TextField id="answerTwo" label="Answer Two" variant="outlined" required/>
+                                </Stack>
+                                <Button variant="outlined" type="submit">Add Question</Button>
+                            </Stack>
+                        </form>
+                    </Paper>
                 </Stack>
-            </Paper>
-            <Question />
+                <Grid container spacing={2}>
+                    {questions.map((question) => 
+                        <Grid xs={12} md={6}>
+                            <Question ques={question}/>
+                        </Grid>)}
+                </Grid>
+                
+            </Stack>
             <button onClick={() => navigate('/')}>Home</button>
         </>
     )
 }
 
-function Question() {
-    
+function Question(props: question | any) {
+    console.log(props.ques);
     
     return(
         <Paper>
-            
+            <Typography>{props.ques.question}</Typography>
         </Paper>
     )
 }
