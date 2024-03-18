@@ -4,17 +4,18 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom"
-import { question } from "./context";
+import { question, useAuthContext } from "./context";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
 
 
 export default function CreatePoll(){
 
     const navigate = useNavigate();
 
-    const [ questions ] = useState<question[]>([])
+    const { polls, setPolls } = useAuthContext();
+
+    const [ questions, setQuestions ] = useState<question[]>([])
 
     const addQuestion = (event: React.SyntheticEvent) => {
         event.preventDefault();
@@ -26,15 +27,26 @@ export default function CreatePoll(){
         const question = form.questionId.value;
         const answerOne = form.answerOne.value;
         const answerTwo = form.answerTwo.value;
-        questions.push({
+        setQuestions([
+            ...questions, {
             question: question,
             answers: [{answer: answerOne, count: 0}, {answer: answerTwo, count: 0}]
-        })
+        }])
     }
 
     const addPoll = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        alert("Submitted Poll");
+        const form = event.target as typeof event.target & {
+            pollName: {value: string},
+            pollDesc: {value: string}
+        }
+        const pollName = form.pollName.value;
+        const pollDesc = form.pollDesc.value;
+        setPolls([
+            ...polls,
+            {pollName: pollName, pollDesc: pollDesc, questions: questions}
+        ])
+        navigate('/managePoll')
     }
 
     return(
@@ -65,21 +77,19 @@ export default function CreatePoll(){
                         </form>
                     </Paper>
                 </Stack>
-                <Grid container spacing={2}>
-                    {questions.map((question) => 
-                        <Grid xs={12} md={6}>
-                            <Question ques={question}/>
-                        </Grid>)}
-                </Grid>
-                
+                {questions.map((question) =>     
+                    <Question ques={question}/>
+                )}
+                <Stack direction="row" justifyContent="space-around">
+                    <button onClick={() => navigate('/')}>Home</button>
+                    <button onClick={() => alert("Not yet buddy")}>Log Out</button>
+                </Stack>
             </Stack>
-            <button onClick={() => navigate('/')}>Home</button>
         </>
     )
 }
 
 function Question(props: question | any) {
-    console.log(props.ques);
     
     return(
         <Paper>

@@ -6,7 +6,8 @@ export interface auth {
     setAuthToken: (value: string) => void,
     type: string,
     setType: (value: string) => void,
-    polls: poll[]
+    polls: poll[],
+    setPolls: (value: poll[]) => void
 }
 
 export type question = {
@@ -15,7 +16,8 @@ export type question = {
 }
 
 export type poll = {
-    id: number,
+    pollName: string,
+    pollDesc: string,
     questions: question[]
 }
 
@@ -25,7 +27,8 @@ export const authContext = createContext<auth>({
     setAuthToken: () => {},
     type: "",
     setType: () => {},
-    polls: []
+    polls: [],
+    setPolls: () => {}
 });
 
 export const useAuthContext = () => useContext(authContext);

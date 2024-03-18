@@ -12,10 +12,10 @@ function App() {
   
   const [authToken, setAuthToken] = useState<string>("");
   const [type, setType] = useState<string>("");
-  const [polls] = useState<poll[]>([]);
+  const [polls, setPolls] = useState<poll[]>([]);
 
   return (
-    <authContext.Provider value={{authToken, setAuthToken, type, setType, polls}}>
+    <authContext.Provider value={{authToken, setAuthToken, type, setType, polls, setPolls}}>
       <BrowserRouter>
         <Routes>
           <Route

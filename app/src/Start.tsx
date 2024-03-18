@@ -1,9 +1,10 @@
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Typography } from '@mui/material';
+import Stack from "@mui/material/Stack";
 import './Start.css'
 import { useAuthContext } from './context';
 import { useNavigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 export default function Start() {
     return(
@@ -78,8 +79,10 @@ function ManagePoll() {
             <Typography variant='h3'>Manage Polls</Typography>
             <Typography variant='body1'>Here you can create a new poll to be shared with the world</Typography>
             <Typography variant='body1'>You can also view the results of your existing polls or edit them if needed</Typography>
-            <button onClick={managePollPage}>Manage your Polls</button>
-            <button onClick={createPollPage}>Create new Poll</button>
+            <Stack direction="row" justifyContent="space-evenly">
+                <button onClick={managePollPage}>Manage your Polls</button>
+                <button onClick={createPollPage}>Create new Poll</button>
+            </Stack>
             <Typography variant='body1'>If you are not logged in already, you will be taken to a login page</Typography>
         </Paper>
     )
