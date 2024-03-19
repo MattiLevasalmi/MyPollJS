@@ -17,6 +17,7 @@ export type question = {
 
 export type poll = {
     pollName: string,
+    pollId: number
     pollDesc: string,
     questions: question[]
 }

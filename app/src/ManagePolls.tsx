@@ -31,9 +31,7 @@ export default function ManagePolls(){
 
 function ListPoll(props: poll | any){
 
-    const viewPoll = () => {
-
-    }
+    const navigate = useNavigate();
 
     const editPoll = () => {
 
@@ -42,13 +40,14 @@ function ListPoll(props: poll | any){
 
     return (
         <Paper sx={{ m: 2, p: 2 }}>
-            <Stack direction="row" spacing={3}>
+            <Stack direction="row" spacing={3} justifyContent="space-between">
                 <Stack>
                     <Typography>Name: {props.poll.pollName}</Typography>
+                    <Typography>ID: {props.poll.pollId}</Typography>
                     <Typography>Description: {props.poll.pollDesc}</Typography>
                 </Stack>
                 <Stack spacing={1}>
-                    <button onClick={() => viewPoll()}>View Poll</button>
+                    <button onClick={() => navigate('/viewPoll', {state: props.poll})}>View Poll</button>
                     <button onClick={() => editPoll()}>Edit Poll</button>
                 </Stack>
             </Stack>

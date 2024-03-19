@@ -44,9 +44,9 @@ export default function CreatePoll(){
         const pollDesc = form.pollDesc.value;
         setPolls([
             ...polls,
-            {pollName: pollName, pollDesc: pollDesc, questions: questions}
+            {pollName: pollName, pollId: (polls.length+1), pollDesc: pollDesc, questions: questions}
         ])
-        navigate('/managePoll')
+        navigate('/managePolls')
     }
 
     return(
@@ -93,7 +93,14 @@ function Question(props: question | any) {
     
     return(
         <Paper>
-            <Typography>{props.ques.question}</Typography>
+            <Typography>Question: {props.ques.question}</Typography>
+            <Typography>Answers:</Typography>
+            <Stack direction="row" justifyContent="space-around">
+                
+                <Typography>{props.ques.answers[0].answer}</Typography>
+                <Typography>Or</Typography>
+                <Typography>{props.ques.answers[1].answer}</Typography>
+            </Stack>
         </Paper>
     )
 }

@@ -6,6 +6,7 @@ import { authContext, poll } from './context'
 import { useState } from 'react'
 import ManagePolls from './ManagePolls'
 import CreatePoll from './CreatePoll'
+import ViewPoll from './ViewPoll'
 
 
 function App() {
@@ -27,12 +28,16 @@ function App() {
             element={<Login />}
           />
           <Route
-            path="/managePoll"
+            path="/managePolls"
             element={<ManagePolls />}
           />
           <Route
             path="/createPoll"
             element={<CreatePoll />}
+          />
+          <Route
+            path="/viewPoll"
+            element={<ViewPoll />}
           />
         </Routes>
       </BrowserRouter>
