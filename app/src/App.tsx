@@ -7,6 +7,8 @@ import { useState } from 'react'
 import ManagePolls from './ManagePolls'
 import CreatePoll from './CreatePoll'
 import ViewPoll from './ViewPoll'
+import SearchPolls from './SearchPolls'
+import AnswerPoll from './AnswerPoll'
 
 
 function App() {
@@ -38,6 +40,14 @@ function App() {
           <Route
             path="/viewPoll"
             element={<ViewPoll />}
+          />
+          <Route
+            path="/searchPolls"
+            element={<SearchPolls />}
+          />
+          <Route
+            path="/answerPoll"
+            element={<AnswerPoll />}
           />
         </Routes>
       </BrowserRouter>

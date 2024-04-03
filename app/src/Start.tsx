@@ -24,21 +24,20 @@ export default function Start() {
 
 function AnswerPoll() {
 
+    const navigate = useNavigate();
+    const { polls } = useAuthContext();
+
     const joinPoll = (event: React.SyntheticEvent) => {
         event.preventDefault();
         const form = event.target as typeof event.target & {
-            pollId: {value: string}
+            pollId: {value: number}
         };
         const pollId = form.pollId.value;
-        getPoll(pollId);
+        goToPoll(pollId);
     }
 
-    const getPoll = (pollId: string) => {
-        pollId // Brings user to a page they can answer selected poll in
-    }
-
-    const findPolls = () => {
-        // Shows list of polls
+    const goToPoll = (pollId: number) => {
+        navigate('/AnswerPoll', {state: polls[pollId-1]})
     }
 
     return (
@@ -50,7 +49,7 @@ function AnswerPoll() {
                 Enter Poll ID: <input type="number" id="pollId" required></input>
                 <button type="submit">Join Poll</button>
             </form>
-            <button onClick={findPolls}>Search for a Poll</button>
+            <button onClick={() => navigate('/searchPolls')}>Search for a Poll</button>
         </Paper>
     )
 }
@@ -62,9 +61,9 @@ function ManagePoll() {
 
     const managePollPage = () => {
         if (authToken == "")
-            navigate('/Login', {state: '/managePoll'})
+            navigate('/Login', {state: '/managePolls'})
         else
-            navigate('/managePoll')
+            navigate('/managePolls')
     }
 
     const createPollPage = () => {
