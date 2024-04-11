@@ -10,12 +10,16 @@ module.exports = async function(req, res) {
         if (foundUser) {
             let storedPass = foundUser.password;
 
-            const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
+            const passwordMatch = await bcrypt.compare(password, storedPass);
             if (passwordMatch) {
                 res.json({
                     "access_token": foundUser.access_token,
                     "id": foundUser.id
                 });
+            }
+            else {
+                res.statusCode = 401;
+                res.json("Incorrect Password");
             }
         }
         else {

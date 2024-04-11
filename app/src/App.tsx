@@ -9,6 +9,7 @@ import CreatePoll from './CreatePoll'
 import ViewPoll from './ViewPoll'
 import SearchPolls from './SearchPolls'
 import AnswerPoll from './AnswerPoll'
+import Register from './Register'
 
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
           <Route
             path="/Login"
             element={<Login />}
+          />
+          <Route
+            path="/register"
+            element={<Register />}
           />
           <Route
             path="/managePolls"

@@ -11,13 +11,13 @@ var corsOptions = {
 }
 
 
-var login = require('.login');
+var login = require('./login');
 
 app.post('/login', cors(corsOptions), (req, res) => {
     login(req, res);
 });
 
-var register = require('.register');
+var register = require('./register');
 
 app.post('/register', cors(corsOptions), (req, res) => {
     register(req, res);
