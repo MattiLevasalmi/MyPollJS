@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuthContext } from "./context";
+import { useNavigate } from "react-router-dom";
+//import { useAuthContext } from "./context";
 import axios from "axios";
 //import { IconButton } from "@mui/material";
 //import { Closeicon } from "@mui/icons-material" run 'npm install @mui/icon-material' (may be wrong)
@@ -8,7 +8,7 @@ export default function Login(){
 
     //const { setAuthToken, setType } = useAuthContext();
     const navigate = useNavigate();
-    const { state } = useLocation();
+    //const { state } = useLocation();
 
     const submitLogin = (event: React.SyntheticEvent) => {
         event.preventDefault();

@@ -1,12 +1,12 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuthContext } from "./context";
+import { useNavigate } from "react-router-dom";
+//import { useAuthContext } from "./context";
 import axios from "axios";
 
 
 export default function Register() {
     //const { setAuthToken, setType } = useAuthContext();
     const navigate = useNavigate();
-    const { state } = useLocation();
+    //const { state } = useLocation();
 
     const submitRegister = (event: React.SyntheticEvent) => {
         event.preventDefault();
