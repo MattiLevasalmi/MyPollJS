@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //import { useAuthContext } from "./context";
 import axios from "axios";
 //import { IconButton } from "@mui/material";
@@ -8,7 +8,7 @@ export default function Login(){
 
     //const { setAuthToken, setType } = useAuthContext();
     const navigate = useNavigate();
-    const { state } = useLocation();
+    //const { state } = useLocation();
 
     const submitLogin = (event: React.SyntheticEvent) => {
         event.preventDefault();
