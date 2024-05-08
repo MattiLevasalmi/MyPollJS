@@ -19,8 +19,8 @@ export default function AnswerPoll(){
                     <ShowQuestion ques={question}/>
                 )}
                 <Stack direction="row" spacing={2}>
-                    <button onClick={() => navigate('/MyPollJS/SearchPolls')}>Back</button>
-                    <button onClick={() => navigate('/MyPollJS')}>Home</button>
+                    <button onClick={() => navigate('/SearchPolls')}>Back</button>
+                    <button onClick={() => navigate('/')}>Home</button>
                 </Stack>
             </Stack>
         </>

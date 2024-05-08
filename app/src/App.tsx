@@ -23,35 +23,35 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/MyPollJS"
+            path="/"
             element={<Start />}
           />
           <Route
-            path="/MyPollJS/Login"
+            path="/Login"
             element={<Login />}
           />
           <Route
-            path="/MyPollJS/register"
+            path="/register"
             element={<Register />}
           />
           <Route
-            path="/MyPollJS/managePolls"
+            path="/managePolls"
             element={<ManagePolls />}
           />
           <Route
-            path="/MyPollJS/createPoll"
+            path="/createPoll"
             element={<CreatePoll />}
           />
           <Route
-            path="/MyPollJS/viewPoll"
+            path="/viewPoll"
             element={<ViewPoll />}
           />
           <Route
-            path="/MyPollJS/searchPolls"
+            path="/searchPolls"
             element={<SearchPolls />}
           />
           <Route
-            path="/MyPollJS/answerPoll"
+            path="/answerPoll"
             element={<AnswerPoll />}
           />
         </Routes>
