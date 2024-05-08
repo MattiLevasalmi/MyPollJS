@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: Set working directory
         run: cd app
-        working-directory: ./app
+        working-directory: app
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Node
