@@ -22,7 +22,7 @@ export default function Login(){
     }
 
     const doLogin = (email: string, password: string) => {
-        axios.post("http://localhost:3000/login", {
+        axios.post("https://pollapi.vercel.app/login", {
             email: email, password: password
         }).then((response) => {
             console.log(response.data);

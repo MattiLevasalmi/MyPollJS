@@ -20,7 +20,7 @@ export default function Register() {
     }
 
     const doRegister = (email: string, password: string) => {
-        axios.post("http://localhost:3000/register", {
+        axios.post("https://pollapi.vercel.app/register", {
             email: email, password: password
         }).then((response) => {
             console.log(response.data)
