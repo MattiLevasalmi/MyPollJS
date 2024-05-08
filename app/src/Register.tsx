@@ -31,7 +31,7 @@ export default function Register() {
 
     return(
         <div>
-            <button onClick={() => navigate('/')}>Home</button>
+            <button onClick={() => navigate('/MyPollJS')}>Home</button>
             <h1>Register to Polls R Us</h1>
             <form onSubmit={submitRegister}>
                 <p><input type="email" id="email" required></input></p>

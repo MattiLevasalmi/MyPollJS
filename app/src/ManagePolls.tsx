@@ -19,8 +19,8 @@ export default function ManagePolls(){
                 )}
             
             <Stack direction="row" justifyContent="space-around">
-                <button onClick={() => navigate('/')}>Home</button>
-                <button onClick={() => navigate('/createPoll')}>Create New Poll</button>
+                <button onClick={() => navigate('/MyPollJS')}>Home</button>
+                <button onClick={() => navigate('/MyPollJS/createPoll')}>Create New Poll</button>
                 <button onClick={() => alert("not yet")}>Log Out</button>
             </Stack>
             
@@ -47,7 +47,7 @@ function ListPoll(props: poll | any){
                     <Typography>Description: {props.poll.pollDesc}</Typography>
                 </Stack>
                 <Stack spacing={1}>
-                    <button onClick={() => navigate('/viewPoll', {state: props.poll})}>View Poll</button>
+                    <button onClick={() => navigate('/MyPollJS/viewPoll', {state: props.poll})}>View Poll</button>
                     <button onClick={() => editPoll()}>Edit Poll</button>
                 </Stack>
             </Stack>

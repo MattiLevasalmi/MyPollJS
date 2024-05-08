@@ -33,14 +33,14 @@ export default function Login(){
 
     return(
         <div>
-            <button onClick={() => navigate('/')}>Home</button>
+            <button onClick={() => navigate('/MyPollJS')}>Home</button>
             <h1>Login to Polls R Us</h1>
             <form onSubmit={submitLogin}>
                 <p><input type="email" id="email" required></input></p>
                 <p><input type="password" id="password" required></input></p>
                 <p><button type="submit">Login</button></p>
             </form>
-            <button onClick={() => navigate('/register')}>Go to Registration</button>
+            <button onClick={() => navigate('/MyPollJS/register')}>Go to Registration</button>
         </div>
     )
 }

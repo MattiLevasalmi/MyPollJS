@@ -37,7 +37,7 @@ function AnswerPoll() {
     }
 
     const goToPoll = (pollId: number) => {
-        navigate('/AnswerPoll', {state: polls[pollId-1]})
+        navigate('/MyPollJS/AnswerPoll', {state: polls[pollId-1]})
     }
 
     return (
@@ -49,7 +49,7 @@ function AnswerPoll() {
                 Enter Poll ID: <input type="number" id="pollId" required></input>
                 <button type="submit">Join Poll</button>
             </form>
-            <button onClick={() => navigate('/searchPolls')}>Search for a Poll</button>
+            <button onClick={() => navigate('/MyPollJS/searchPolls')}>Search for a Poll</button>
         </Paper>
     )
 }
@@ -61,16 +61,16 @@ function ManagePoll() {
 
     const managePollPage = () => {
         if (authToken == "")
-            navigate('/Login', {state: '/managePolls'})
+            navigate('/MyPollJS/Login', {state: '/MyPollJS/managePolls'})
         else
-            navigate('/managePolls')
+            navigate('/MyPollJS/managePolls')
     }
 
     const createPollPage = () => {
         if (authToken == "")
-            navigate('/Login', {state: '/createPoll'})
+            navigate('/MyPollJS/Login', {state: '/MyPollJS/createPoll'})
         else
-            navigate('/createPoll')
+            navigate('/MyPollJS/createPoll')
     }
 
     return (

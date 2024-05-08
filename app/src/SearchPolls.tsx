@@ -18,7 +18,7 @@ export default function SearchPolls(){
                 {polls.map((poll) => 
                     <ListPoll poll={poll}/> 
                 )}
-            <button onClick={() => navigate('/')}>Home</button>
+            <button onClick={() => navigate('/MyPollJS')}>Home</button>
             
             </Stack>
         </>   
@@ -39,7 +39,7 @@ function ListPoll(props: poll | any){
                 </Stack>
                 <Typography>Description: {props.poll.pollDesc}</Typography>
                 <Divider variant="middle" />
-                <button onClick={() => navigate('/answerPoll', {state: props.poll})}>Answer Poll</button>
+                <button onClick={() => navigate('/MyPollJS/answerPoll', {state: props.poll})}>Answer Poll</button>
             </Stack>
         </Paper>
     )

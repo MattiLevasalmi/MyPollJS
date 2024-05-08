@@ -46,7 +46,7 @@ export default function CreatePoll(){
             ...polls,
             {pollName: pollName, pollId: (polls.length+1), pollDesc: pollDesc, questions: questions}
         ])
-        navigate('/managePolls')
+        navigate('/MyPollJS/managePolls')
     }
 
     return(
@@ -81,7 +81,7 @@ export default function CreatePoll(){
                     <Question ques={question}/>
                 )}
                 <Stack direction="row" justifyContent="space-around">
-                    <button onClick={() => navigate('/')}>Home</button>
+                    <button onClick={() => navigate('/MyPollJS')}>Home</button>
                     <button onClick={() => alert("Not yet buddy")}>Log Out</button>
                 </Stack>
             </Stack>
