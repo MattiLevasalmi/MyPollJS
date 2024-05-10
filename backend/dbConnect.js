@@ -1,8 +1,10 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
-import { uri } from './secret.js';
+var MongoClient = require('mongodb').MongoClient;
+var ServerApiVersion = require('mongodb').ServerApiVersion;
+var uri = require('./secret');
 
-export const client = new MongoClient(uri, {
-    useNewUrlPaser: true,
+const client = new MongoClient(uri, {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     serverApi: ServerApiVersion.v1
 });
+module.exports = client;
