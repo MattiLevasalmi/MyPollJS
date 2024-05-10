@@ -7,7 +7,7 @@ module.exports = async function(req, res) {
 
     client.connect((err) => {
         if (err) {
-            res.statusCode = 501;
+            res.statusCode = 500;
             res.json("Internal server error: " + err);
         }
         else {
