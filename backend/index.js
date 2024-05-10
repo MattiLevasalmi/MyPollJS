@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 var corsOptions = {
-    origin: 'https://pollapi.vercel.app',
+    origin: 'https://pollapi.vercel.app/Login',
     optionSuccessStatus: 200
 }
 
