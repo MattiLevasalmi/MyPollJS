@@ -10,6 +10,8 @@ var corsOptions = {
     optionSuccessStatus: 200
 }
 
+app.use(corsOptions);
+
 
 var login = require('./login');
 
