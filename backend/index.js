@@ -6,11 +6,9 @@ app.use(cors());
 app.use(express.json());
 
 var corsOptions = {
+    origin: true,
     optionSuccessStatus: 200
 }
-
-app.use(corsOptions);
-
 
 var login = require('./login');
 
