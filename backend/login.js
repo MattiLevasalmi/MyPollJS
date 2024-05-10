@@ -1,34 +1,35 @@
 var bcrypt = require('bcrypt');
-var users = require('./data').userDB;
+var client = require('./dbConnect').client;
 
 module.exports = async function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
 
-    try{
-        let foundUser = users.find((data) => email === data.email);
-        if (foundUser) {
-            let storedPass = foundUser.password;
-
-            const passwordMatch = await bcrypt.compare(password, storedPass);
-            if (passwordMatch) {
-                res.json({
-                    "access_token": foundUser.access_token,
-                    "id": foundUser.id
-                });
-            }
-            else {
-                res.statusCode = 401;
-                res.json("Incorrect Password");
-            }
+    client.connect((err) => {
+        if (err) {
+            res.statusCode = 500;
+            res.json("Internal server error: " + err);
         }
         else {
-            res.statusCode = 401;
-            res.json("No account could be found linked to inputted email, please check input or register a new account");
+            const collection = client.db('MyPollJS').collection('Users');
+            const user = collection.find({ email: email });
+            if (!user) {
+                res.statusCode = 401;
+                res.json("No account could be found linked to inputted email, please check input or register a new account");
+            }
+            client.close();
         }
-    } catch {
-        res.statusCode = 500;
-        res.json("Internal server error");
-    }
+    });
 
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (passwordMatch) {
+        res.json({
+            "access_token": user.access_token,
+            "id": user.id
+        });
+    }
+    else {
+        res.statusCode = 401;
+        res.json("Incorrect Password");
+    }
 }
