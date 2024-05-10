@@ -1,5 +1,5 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import { uri } from '.secret.js';
+import { uri } from './secret.js';
 
 export const client = new MongoClient(uri, {
     useNewUrlPaser: true,
