@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt');
 var {v4 : uuidv4} = require('uuid')
-var client = require('./dbConnect').client;
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = require('./secret');
 
 module.exports = async function(req, res) {
     var email = req.body.email;

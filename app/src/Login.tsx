@@ -20,7 +20,7 @@ export default function Login(){
         const password = form.password.value;
         doLogin(email, password);
     }
-
+    
     const doLogin = (email: string, password: string) => {
         axios.post("http://localhost:3000/login", {
             email: email, password: password
