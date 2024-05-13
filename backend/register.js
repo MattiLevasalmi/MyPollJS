@@ -17,7 +17,6 @@ module.exports = async function(req, res) {
         }
     });
 
-    let conn;
     try{
         await client.connect();
     } catch (err) {

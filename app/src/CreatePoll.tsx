@@ -4,16 +4,15 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom"
-import { question, useAuthContext } from "./context";
+import { question } from "./context";
 import { useState } from "react";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 
 export default function CreatePoll(){
 
     const navigate = useNavigate();
-
-    const { polls, setPolls } = useAuthContext();
 
     const [ questions, setQuestions ] = useState<question[]>([])
 
@@ -42,11 +41,18 @@ export default function CreatePoll(){
         }
         const pollName = form.pollName.value;
         const pollDesc = form.pollDesc.value;
-        setPolls([
-            ...polls,
-            {pollName: pollName, pollId: (polls.length+1), pollDesc: pollDesc, questions: questions}
-        ])
-        navigate('/managePolls')
+        postPoll(pollName, pollDesc, questions);
+    }
+
+    const postPoll = (pollName: string, pollDesc: string, questions: question[]) => {
+        axios.post("http://localhost:3000/polls", {
+            pollName: pollName, pollDesc: pollDesc, questions: questions
+        }).then((response) => {
+            console.log(response);
+            navigate('/managePolls');
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 
     return(

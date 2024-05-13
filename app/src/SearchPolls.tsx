@@ -2,14 +2,28 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import { poll, useAuthContext } from "./context";
+import { poll } from "./context";
 import Divider from "@mui/material/Divider";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 export default function SearchPolls(){
     const navigate = useNavigate();
 
-    const { polls } = useAuthContext();
+    const [polls, setPolls] = useState<poll[]>([]);
+
+    const getPolls = () => {
+        axios.get("http://localhost:3000/polls").then((response) => {
+            setPolls(response.data);
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+
+    useEffect(() => {
+        getPolls();
+    },[]);
 
     return(
         <>
