@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function Login(){
 
-    const { setAuthToken } = useAuthContext();
+    const { setAuthToken, setID } = useAuthContext();
     const navigate = useNavigate();
     const { state } = useLocation();
 
@@ -26,6 +26,7 @@ export default function Login(){
             email: email, password: password
         }).then((response) => {
             setAuthToken(response.data.access_token);
+            setID(response.data.id);
             navigate(state);
         }).catch((error) => {
             console.log(error);

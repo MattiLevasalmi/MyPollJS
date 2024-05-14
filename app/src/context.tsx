@@ -4,8 +4,8 @@ import { createContext, useContext } from "react";
 export interface auth {
     authToken: string,
     setAuthToken: (value: string) => void,
-    type: string,
-    setType: (value: string) => void,
+    ID: string,
+    setID: (value: string) => void,
     polls: poll[],
     setPolls: (value: poll[]) => void
 }
@@ -17,8 +17,9 @@ export type question = {
 
 export type poll = {
     pollName: string,
-    pollId: number
+    _id: string,
     pollDesc: string,
+    ownerId: string,
     questions: question[]
 }
 
@@ -26,8 +27,8 @@ export type poll = {
 export const authContext = createContext<auth>({
     authToken: "",
     setAuthToken: () => {},
-    type: "",
-    setType: () => {},
+    ID: "",
+    setID: () => {},
     polls: [],
     setPolls: () => {}
 });

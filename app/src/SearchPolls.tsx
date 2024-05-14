@@ -49,7 +49,7 @@ function ListPoll(props: poll | any){
             <Stack spacing={1}>
                 <Stack direction="row" justifyContent="space-around">
                     <Typography>Name: {props.poll.pollName}</Typography>
-                    <Typography>ID: {props.poll.pollId}</Typography>
+                    <Typography>ID: {props.poll._id}</Typography>
                 </Stack>
                 <Typography>Description: {props.poll.pollDesc}</Typography>
                 <Divider variant="middle" />

@@ -1,10 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuthContext } from "./context";
 import axios from "axios";
 
 
 export default function Register() {
-    const { setAuthToken } = useAuthContext();
     const navigate = useNavigate();
     const { state } = useLocation();
 
@@ -25,8 +23,8 @@ export default function Register() {
         axios.post("http://localhost:3000/register", {
             username: username, email: email, password: password
         }).then((response) => {
-            setAuthToken(response.data.access_token);
-            navigate(state);
+            console.log(response);
+            navigate('/Login', {state: state});
         }).catch((error) => {
             console.log(error);
         })

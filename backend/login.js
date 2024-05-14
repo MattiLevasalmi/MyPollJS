@@ -34,7 +34,8 @@ module.exports = async function(req, res) {
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (passwordMatch) {
             res.json({
-                "access_token": user.access_token
+                "access_token": user.access_token,
+                "id": user._id
             });
         }
         else {

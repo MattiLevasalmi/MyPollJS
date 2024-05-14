@@ -40,9 +40,7 @@ module.exports = async function(req, res) {
         };
         let result = await collection.insertOne(newUser);
         if (result){
-            res.json({
-                "access_token": newUser.access_token
-            });
+            res.json("Account Created! Please login now.");
         }
     }
     client.close();

@@ -31,4 +31,9 @@ app.get('/polls', cors(corsOptions), (req, res) => {
     getPoll(req, res);
 });
 
+var answerPoll = require('./answerPoll');
+app.put('/polls', cors(corsOptions), (req, res) => {
+    answerPoll(req, res);
+});
+
 app.listen(3000);

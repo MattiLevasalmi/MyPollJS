@@ -15,11 +15,11 @@ import Register from './Register'
 function App() {
   
   const [authToken, setAuthToken] = useState<string>("");
-  const [type, setType] = useState<string>("");
+  const [ID, setID] = useState<string>("");
   const [polls, setPolls] = useState<poll[]>([]);
 
   return (
-    <authContext.Provider value={{authToken, setAuthToken, type, setType, polls, setPolls}}>
+    <authContext.Provider value={{authToken, setAuthToken, ID, setID, polls, setPolls}}>
       <BrowserRouter>
         <Routes>
           <Route
