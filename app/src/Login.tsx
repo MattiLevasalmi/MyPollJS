@@ -1,14 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "./context";
 import axios from "axios";
-//import { IconButton } from "@mui/material";
-//import { Closeicon } from "@mui/icons-material" run 'npm install @mui/icon-material' (may be wrong)
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useState } from "react";
 
 export default function Login(){
 
     const { setAuthToken, setID } = useAuthContext();
     const navigate = useNavigate();
     const { state } = useLocation();
+    const [open, setOpen] = useState(false);
 
     const submitLogin = (event: React.SyntheticEvent) => {
         event.preventDefault();
@@ -18,6 +20,7 @@ export default function Login(){
         };
         const email = form.email.value;
         const password = form.password.value;
+        handleOpen();
         doLogin(email, password);
     }
     
@@ -27,14 +30,26 @@ export default function Login(){
         }).then((response) => {
             setAuthToken(response.data.access_token);
             setID(response.data.id);
+            handleClose();
             navigate(state);
         }).catch((error) => {
+            handleClose();
             console.log(error);
         })
     }
 
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return(
         <div>
+            <Backdrop open={open}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <button onClick={() => navigate('/')}>Home</button>
             <h1>Login to Polls R Us</h1>
             <form onSubmit={submitLogin}>

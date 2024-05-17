@@ -31,6 +31,16 @@ app.get('/polls', cors(corsOptions), (req, res) => {
     getPoll(req, res);
 });
 
+var getPollbyId = require('./getPollbyId');
+app.get('/polls/owner/:id', cors(corsOptions), (req, res) => {
+    getPollbyId(req, res);
+})
+
+var getPollbyPollId = require('./getPollbyPollId');
+app.get('/polls/:id', cors(corsOptions), (req, res) => {
+    getPollbyPollId(req, res);
+})
+
 var answerPoll = require('./answerPoll');
 app.put('/polls', cors(corsOptions), (req, res) => {
     answerPoll(req, res);

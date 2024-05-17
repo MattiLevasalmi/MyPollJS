@@ -6,20 +6,28 @@ import { poll } from "./context";
 import Divider from "@mui/material/Divider";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 export default function SearchPolls(){
     const navigate = useNavigate();
 
     const [polls, setPolls] = useState<poll[]>([]);
+    const [open, setOpen] = useState(true);
 
     const getPolls = () => {
         axios.get("http://localhost:3000/polls").then((response) => {
             setPolls(response.data);
+            handleClose();
         }).catch((error) => {
             console.log(error);
         })
     }
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     useEffect(() => {
         getPolls();
@@ -27,6 +35,9 @@ export default function SearchPolls(){
 
     return(
         <>
+            <Backdrop open={open}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <h1>Polls</h1>
             <Stack spacing={2}>
                 {polls.map((poll) => 

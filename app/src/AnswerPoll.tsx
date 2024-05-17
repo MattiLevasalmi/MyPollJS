@@ -65,7 +65,7 @@ function ShowQuestion(props: question | any) {
     return (
         <Paper sx={{ m: 2, p: 2 }}>
             <Stack spacing={2}>
-                <Typography>{props.ques.question} {props.question}</Typography>
+                <Typography>{props.ques.question}</Typography>
                 <Divider variant="middle"/>
                 <Stack direction="row" spacing={5} justifyContent="space-around" alignItems="center">
                     <Stack spacing={1}>
