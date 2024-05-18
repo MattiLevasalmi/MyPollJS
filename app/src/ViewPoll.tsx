@@ -16,8 +16,8 @@ export default function ViewPoll() {
             <h1>{state.pollName}</h1>
             <Stack spacing={3}>
                 
-                {state.questions.map((question: any) =>
-                    <ShowQuestion ques={question}/>
+                {state.questions.map((question: any, index: number) =>
+                    <ShowQuestion key={index} ques={question}/>
                 )}
                 <Stack direction="row" spacing={2}>
                     <button onClick={() => navigate('/managePolls')}>Back</button>

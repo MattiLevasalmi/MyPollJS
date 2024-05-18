@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 var corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'https://mypolljs.vercel.app',
     credentials: true,
     optionSuccessStatus: 200
 }

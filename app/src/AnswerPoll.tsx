@@ -20,7 +20,7 @@ export default function AnswerPoll(){
     const [votes, setVotes] = useState<vote[]>([]);
 
     const submitVotes = () => {
-        axios.put("http://localhost:3000/polls", { 
+        axios.put("https://pollapi.vercel.app/polls", { 
             votes: votes,
             poll: state._id
         }).then((response) => {
@@ -35,7 +35,7 @@ export default function AnswerPoll(){
             <h1>{state.pollName}</h1>
             <Stack spacing={3}>
                 {state.questions.map((question: number, index: number) =>
-                    <ShowQuestion ques={question} question={index} setVotes={setVotes} votes={votes}/>
+                    <ShowQuestion key={index} ques={question} question={index} setVotes={setVotes} votes={votes}/>
                 )}
                 <Stack direction="row" justifyContent={"space-evenly"}>
                     <button onClick={() => navigate('/SearchPolls')}>Back</button>

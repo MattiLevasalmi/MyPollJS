@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = require('./secret');
 
 module.exports = async function(req, res) {
@@ -9,7 +9,7 @@ module.exports = async function(req, res) {
         deprecationErrors: true,
         }
     });
-
+    
     let conn;
     try{
         await client.connect();
@@ -18,10 +18,11 @@ module.exports = async function(req, res) {
         res.json("Internal server error: " + err);
     }
 
-    var pollId = req.params.id;
+    var pollId = new ObjectId(req.params.id);
 
     const collection = client.db('MyPollJS').collection('Polls');
     var poll = await collection.findOne( { _id: pollId } );
+    
     if (poll) {
         res.json(poll);
     }

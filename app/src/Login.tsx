@@ -3,7 +3,7 @@ import { useAuthContext } from "./context";
 import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Login(){
 
@@ -11,6 +11,7 @@ export default function Login(){
     const navigate = useNavigate();
     const { state } = useLocation();
     const [open, setOpen] = useState(false);
+    const [isLoginSuccess, setIsLoginSuccess] = useState(false);
 
     const submitLogin = (event: React.SyntheticEvent) => {
         event.preventDefault();
@@ -25,13 +26,13 @@ export default function Login(){
     }
     
     const doLogin = (email: string, password: string) => {
-        axios.post("http://localhost:3000/login", {
+        axios.post("https://pollapi.vercel.app/login", {
             email: email, password: password
         }).then((response) => {
             setAuthToken(response.data.access_token);
             setID(response.data.id);
             handleClose();
-            navigate(state);
+            setIsLoginSuccess(true);
         }).catch((error) => {
             handleClose();
             console.log(error);
@@ -44,6 +45,12 @@ export default function Login(){
     const handleClose = () => {
         setOpen(false);
     };
+
+    useEffect(() => {
+        if (isLoginSuccess) {
+            navigate(state);
+        }
+    }, [isLoginSuccess]);
 
     return(
         <div>

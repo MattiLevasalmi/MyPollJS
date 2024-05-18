@@ -31,6 +31,7 @@ function AnswerPoll() {
     const navigate = useNavigate();
     const [polls, setPolls] = useState<poll>();
     const [open, setOpen] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     const handleOpen = () => {
         setOpen(true);
@@ -41,6 +42,7 @@ function AnswerPoll() {
 
     const joinPoll = (event: React.SyntheticEvent) => {
         event.preventDefault();
+        handleOpen();
         const form = event.target as typeof event.target & {
             pollId: {value: string}
         };
@@ -49,14 +51,23 @@ function AnswerPoll() {
     }
 
     const goToPoll = (pollId: string) => {
-        axios.get(`http://localhost:3000/polls/${pollId}`).then((response) => {
+        console.log("buye");
+        axios.get(`https://pollapi.vercel.app/polls/${pollId}`).then((response) => {
             setPolls(response.data);
             handleClose();
-            navigate('/answerPoll', {state: polls})
+            setSuccess(true);
+            console.log("hello");
         }).catch((error) => {
+            console.log("ello");
             console.log(error);
         })
     }
+
+    useEffect(() => {
+        if (success){
+            navigate('/answerPoll', {state: polls})
+        }
+    },[success]);
    
     return (
         <>

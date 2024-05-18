@@ -12,19 +12,26 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function ManagePolls(){
     const navigate = useNavigate();
 
-    const { ID } = useAuthContext();
+    const { ID, setID, setAuthToken } = useAuthContext();
 
     const [polls, setPolls] = useState<poll[]>([]);
     const [open, setOpen] = useState(true);
+    const [logoutSuccess, setLogoutSuccess] = useState(false);
 
     const getPolls = () => {
-        axios.get(`http://localhost:3000/polls/owner/${ID}`).then((response) => {
+        axios.get(`https://pollapi.vercel.app/polls/owner/${ID}`).then((response) => {
             setPolls(response.data);
             handleClose();
         }).catch((error) => {
             handleClose();
             console.log(error);
         })
+    }
+
+    const logout = () => {
+        setAuthToken("");
+        setID("");
+        setLogoutSuccess(true);
     }
 
     const handleClose = () => {
@@ -35,6 +42,12 @@ export default function ManagePolls(){
         getPolls();
     },[]);
 
+    useEffect(() => {
+        if (logoutSuccess) {
+            navigate('/');
+        }
+    }, [logoutSuccess]);
+
     return(
         <>
             <Backdrop open={open}>
@@ -42,14 +55,14 @@ export default function ManagePolls(){
             </Backdrop>
             <h1>Your Polls</h1>
             <Stack spacing={2}>
-                {polls.map((poll) => 
-                    <ListPoll poll={poll}/> 
+                {polls.map((poll, index) => 
+                    <ListPoll key={index} poll={poll}/> 
                 )}
             
             <Stack direction="row" justifyContent="space-around">
                 <button onClick={() => navigate('/')}>Home</button>
                 <button onClick={() => navigate('/createPoll')}>Create New Poll</button>
-                <button onClick={() => alert("not yet")}>Log Out</button>
+                <button onClick={() => logout()}>Log Out</button>
             </Stack>
             
             </Stack>

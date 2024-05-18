@@ -17,7 +17,7 @@ export default function SearchPolls(){
     const [open, setOpen] = useState(true);
 
     const getPolls = () => {
-        axios.get("http://localhost:3000/polls").then((response) => {
+        axios.get("https://pollapi.vercel.app/polls").then((response) => {
             setPolls(response.data);
             handleClose();
         }).catch((error) => {
@@ -40,8 +40,8 @@ export default function SearchPolls(){
             </Backdrop>
             <h1>Polls</h1>
             <Stack spacing={2}>
-                {polls.map((poll) => 
-                    <ListPoll poll={poll}/> 
+                {polls.map((poll, index) => 
+                    <ListPoll key={index} poll={poll}/> 
                 )}
             <button onClick={() => navigate('/')}>Home</button>
             

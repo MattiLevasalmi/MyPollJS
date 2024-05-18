@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom"
 import { question, useAuthContext } from "./context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import axios from "axios";
 
@@ -13,9 +13,10 @@ import axios from "axios";
 export default function CreatePoll(){
 
     const navigate = useNavigate();
-    const { ID } = useAuthContext();
+    const { ID, setID, setAuthToken } = useAuthContext();
 
     const [ questions, setQuestions ] = useState<question[]>([])
+    const [logoutSuccess, setLogoutSuccess] = useState(false);
 
     const addQuestion = (event: React.SyntheticEvent) => {
         event.preventDefault();
@@ -46,7 +47,7 @@ export default function CreatePoll(){
     }
 
     const postPoll = (pollName: string, pollDesc: string, questions: question[]) => {
-        axios.post("http://localhost:3000/polls", {
+        axios.post("https://pollapi.vercel.app/polls", {
             pollName: pollName, ownerID: ID, pollDesc: pollDesc, questions: questions
         }).then((response) => {
             console.log(response);
@@ -55,6 +56,18 @@ export default function CreatePoll(){
             console.log(error);
         })
     }
+
+    const logout = () => {
+        setAuthToken("");
+        setID("");
+        setLogoutSuccess(true);
+    }
+
+    useEffect(() => {
+        if (logoutSuccess){
+            navigate('/');
+        }
+    }, [logoutSuccess]);
 
     return(
         <>
@@ -84,12 +97,12 @@ export default function CreatePoll(){
                         </form>
                     </Paper>
                 </Stack>
-                {questions.map((question) =>     
-                    <Question ques={question}/>
+                {questions.map((question, index) =>     
+                    <Question key={index} ques={question}/>
                 )}
                 <Stack direction="row" justifyContent="space-around">
                     <button onClick={() => navigate('/')}>Home</button>
-                    <button onClick={() => alert("Not yet buddy")}>Log Out</button>
+                    <button onClick={() => logout()}>Log Out</button>
                 </Stack>
             </Stack>
         </>
