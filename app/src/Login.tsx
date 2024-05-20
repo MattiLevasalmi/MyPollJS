@@ -60,8 +60,8 @@ export default function Login(){
             <button onClick={() => navigate('/')}>Home</button>
             <h1>Login to Polls R Us</h1>
             <form onSubmit={submitLogin}>
-                <p><input type="email" id="email" required></input></p>
-                <p><input type="password" id="password" required></input></p>
+                <p><input type="email" id="email" placeholder="email" required></input></p>
+                <p><input type="password" id="password" placeholder="password" required></input></p>
                 <p><button type="submit">Login</button></p>
             </form>
             <button onClick={() => navigate('/register')}>Go to Registration</button>

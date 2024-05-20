@@ -52,9 +52,9 @@ export default function Register() {
             <button onClick={() => navigate('/')}>Home</button>
             <h1>Register to Polls R Us</h1>
             <form onSubmit={submitRegister}>
-                <p><input type="username" id="username" required></input></p> 
-                <p><input type="email" id="email" required></input></p>
-                <p><input type="password" id="password" required></input></p>
+                <p><input type="username" id="username" placeholder="username" required></input></p> 
+                <p><input type="email" id="email" placeholder="email" required></input></p>
+                <p><input type="password" id="password" placeholder="password" required></input></p>
                 <p><button type="submit">Register</button></p>
             </form>
         </div>

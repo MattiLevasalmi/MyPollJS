@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 
@@ -18,7 +18,6 @@ export default function AnswerPoll(){
     const navigate = useNavigate();
     const { state } = useLocation();
     const [votes, setVotes] = useState<vote[]>([]);
-    const [voted, setVoteSuccess] = useState(false);
 
     const submitVotes = () => {
         axios.put("https://pollapi.vercel.app/polls", { 
@@ -26,17 +25,11 @@ export default function AnswerPoll(){
             poll: state._id
         }).then((response) => {
             console.log(response);
-            setVoteSuccess(true);
+            alert("Thanks for Voting!");
         }).catch((error) => {
             console.log(error);
         });
     }
-
-    useEffect(() => {
-        if (voted) {
-            navigate('/viewPoll', { state: state });
-        }
-    }, [voted]);
 
 
     return (
