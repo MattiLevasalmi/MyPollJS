@@ -64,7 +64,7 @@ export default function Login(){
                 <p><input type="password" id="password" placeholder="password" required></input></p>
                 <p><button type="submit">Login</button></p>
             </form>
-            <button onClick={() => navigate('/register')}>Go to Registration</button>
+            <button onClick={() => navigate('/register', { state: state })}>Go to Registration</button>
         </div>
     )
 }

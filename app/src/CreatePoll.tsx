@@ -18,6 +18,7 @@ export default function CreatePoll(){
     const { ID, setID, setAuthToken } = useAuthContext();
 
     const [ questions, setQuestions ] = useState<question[]>([])
+    const [createSuccess, setCreateSuccess] = useState(false);
     const [logoutSuccess, setLogoutSuccess] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -56,8 +57,9 @@ export default function CreatePoll(){
         }).then((response) => {
             console.log(response);
             handleClose();
-            navigate('/managePolls');
+            setCreateSuccess(true);
         }).catch((error) => {
+            handleClose();
             console.log(error);
         })
     }
@@ -74,6 +76,12 @@ export default function CreatePoll(){
     const handleClose = () => {
         setOpen(false);
     };
+
+    useEffect(() => {
+        if (createSuccess){
+            navigate('/managePolls');
+        }
+    }, [logoutSuccess]);
 
     useEffect(() => {
         if (logoutSuccess){
