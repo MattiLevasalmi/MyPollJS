@@ -89,7 +89,6 @@ function ListPoll(props: poll | any){
                 </Stack>
                 <Stack spacing={1}>
                     <button onClick={() => navigate('/viewPoll', {state: props.poll})}>View Poll</button>
-                    <button onClick={() => editPoll()}>Edit Poll</button>
                 </Stack>
             </Stack>
         </Paper>
