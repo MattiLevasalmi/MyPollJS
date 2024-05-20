@@ -8,6 +8,8 @@ import { question, useAuthContext } from "./context";
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 export default function CreatePoll(){
@@ -17,6 +19,7 @@ export default function CreatePoll(){
 
     const [ questions, setQuestions ] = useState<question[]>([])
     const [logoutSuccess, setLogoutSuccess] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const addQuestion = (event: React.SyntheticEvent) => {
         event.preventDefault();
@@ -43,6 +46,7 @@ export default function CreatePoll(){
         }
         const pollName = form.pollName.value;
         const pollDesc = form.pollDesc.value;
+        handleOpen();
         postPoll(pollName, pollDesc, questions);
     }
 
@@ -51,6 +55,7 @@ export default function CreatePoll(){
             pollName: pollName, ownerID: ID, pollDesc: pollDesc, questions: questions
         }).then((response) => {
             console.log(response);
+            handleClose();
             navigate('/managePolls');
         }).catch((error) => {
             console.log(error);
@@ -63,6 +68,13 @@ export default function CreatePoll(){
         setLogoutSuccess(true);
     }
 
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     useEffect(() => {
         if (logoutSuccess){
             navigate('/');
@@ -71,6 +83,9 @@ export default function CreatePoll(){
 
     return(
         <>
+            <Backdrop open={open}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <h1>Create a New Poll</h1>
             <Stack spacing={2}>
                 <Stack direction="row" spacing={2}>

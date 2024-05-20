@@ -20,7 +20,7 @@ export default function ViewPoll() {
                     <ShowQuestion key={index} ques={question}/>
                 )}
                 <Stack direction="row" spacing={2}>
-                    <button onClick={() => navigate('/managePolls')}>Back</button>
+                    <button onClick={() => navigate(-1)}>Back</button>
                     <button onClick={() => navigate('/')}>Home</button>
                 </Stack>
             </Stack>

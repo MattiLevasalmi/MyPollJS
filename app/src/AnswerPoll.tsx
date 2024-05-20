@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 
@@ -18,6 +18,7 @@ export default function AnswerPoll(){
     const navigate = useNavigate();
     const { state } = useLocation();
     const [votes, setVotes] = useState<vote[]>([]);
+    const [voted, setVoteSuccess] = useState(false);
 
     const submitVotes = () => {
         axios.put("https://pollapi.vercel.app/polls", { 
@@ -25,10 +26,18 @@ export default function AnswerPoll(){
             poll: state._id
         }).then((response) => {
             console.log(response);
+            setVoteSuccess(true);
         }).catch((error) => {
             console.log(error);
         });
     }
+
+    useEffect(() => {
+        if (voted) {
+            navigate('/viewPoll', { state: state });
+        }
+    }, [voted]);
+
 
     return (
         <>
@@ -38,7 +47,7 @@ export default function AnswerPoll(){
                     <ShowQuestion key={index} ques={question} question={index} setVotes={setVotes} votes={votes}/>
                 )}
                 <Stack direction="row" justifyContent={"space-evenly"}>
-                    <button onClick={() => navigate('/SearchPolls')}>Back</button>
+                    <button onClick={() => navigate('/SearchPolls')}>Search Polls</button>
                     <button onClick={submitVotes}>Submit</button>
                     <button onClick={() => navigate('/')}>Home</button>
                 </Stack>
