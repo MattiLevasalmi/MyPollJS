@@ -74,10 +74,6 @@ function ListPoll(props: poll | any){
 
     const navigate = useNavigate();
 
-    const editPoll = () => {
-
-    }
-
 
     return (
          <Paper sx={{ m: 2, p: 2 }}>
