@@ -1,24 +1,17 @@
-#My Poll App Project
-
-This is my project README -file
+# MyPollJS
 
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This project is a web application designed to create, manage, and participate in polls. Users are able to create polls on any topic, share the poll ID to others, and view the results as they come in. The project started as a project in one of my classes, at the time the main focus was learning to use online tools and cloud services, including databases, deployment processes, and CI/CD pipelines. Since then, I have decided to revisit it as a hobby project, driven by the desire to refine and improve the application. I aim to apply my growing knowledge to develop a more efficient, clean, and user-friendly web application.
+
+# Current State
+Currently, there are two branches, dev and main. Main is the version that is currently shown on the Vercel site and the dev branch is where my latest changes are.
+I plan to merge the branches once I have refined the design and architecture, then I will add new features and continue with any beneficial changes or refinements.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+1. If you would like to use the current site as designed in the main branch, you can go to mypolljs.vercel.app and answer any polls created by myself or others, or you can create your own account and make your own polls, which you can share with others or leave for other visitors to find.
+2. If you would like to see the progress with my next set of changes you can check out the dev branch.
 
 # Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+1. If you clone the project, you will likely need to run npm install or npm i before running
+2. To start the backend open a terminal and run 'npm start' in the backend folder
+3. To start the frontend open a terminal and run 'npm run dev' in the app folder
