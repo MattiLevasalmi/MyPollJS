@@ -1,0 +1,14 @@
+.sectionOne {
+    background-color: #BCC1BA;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sectionTwo {
+    margin-top: 10px;
+}
+
+img{
+    width: 500;
+    height: 300;
+}

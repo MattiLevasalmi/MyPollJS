@@ -1,15 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Header from './components/Header'
-import Start from './pages/Start'
-import Login from './oldfiles/Login'
-import { authContext, poll } from './oldfiles/context'
+import Login from './Login'
+import Start from './Start'
+import './App.css'
+import { authContext, poll } from './context'
 import { useState } from 'react'
-import ManagePolls from './oldfiles/ManagePolls'
-import CreatePoll from './oldfiles/CreatePoll'
-import ViewPoll from './oldfiles/ViewPoll'
-import SearchPolls from './oldfiles/SearchPolls'
-import AnswerPoll from './oldfiles/AnswerPoll'
-import Register from './oldfiles/Register'
+import ManagePolls from './ManagePolls'
+import CreatePoll from './CreatePoll'
+import ViewPoll from './ViewPoll'
+import SearchPolls from './SearchPolls'
+import AnswerPoll from './AnswerPoll'
+import Register from './Register'
 
 
 function App() {
@@ -24,11 +24,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={
-            <>
-              <Header title={"MyPollJS"} subtitle={"Home Page"}/>
-              <Start />
-            </>}
+            element={<Start />}
           />
           <Route
             path="/Login"

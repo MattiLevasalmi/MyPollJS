@@ -1,30 +1,14 @@
-var bcrypt = require('bcrypt');
-var {v4 : uuidv4} = require('uuid')
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = require('./secret');
+import bcrypt from 'bcrypt';
+import { v4 as uuidv4 } from 'uuid';
+import { getDatabase } from '../db/dbConnection.js';
 
-module.exports = async function(req, res) {
+const register = async function(req, res) {
     var username = req.body.username;
     var email = req.body.email;
     var password = req.body.password;
 
-
-    const client = new MongoClient(uri, {
-        serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-        }
-    });
-
-    try{
-        await client.connect();
-    } catch (err) {
-        res.statusCode = 500;
-        res.json("Internal server error: " + err);
-    }
-
-    const collection = client.db('MyPollJS').collection('Users');
+    const db = getDatabase();
+    const collection = db.collection('Users');
     user = await collection.findOne({ email: email });
     if (user) {
         res.statusCode = 401;
@@ -43,5 +27,6 @@ module.exports = async function(req, res) {
             res.json("Account Created! Please login now.");
         }
     }
-    client.close();
 }
+
+export default register
