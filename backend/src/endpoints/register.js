@@ -1,16 +1,13 @@
 import bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid';
-import { getDatabase } from '../db/dbConnection.js';
+import { readDocuments, createDocument } from '../contollers/crud.js';
 
 const register = async function(req, res) {
-    var username = req.body.username;
-    var email = req.body.email;
-    var password = req.body.password;
+    let username = req.body.username;
+    let email = req.body.email;
+    let password = req.body.password;
 
-    const db = getDatabase();
-    const collection = db.collection('Users');
-    user = await collection.findOne({ email: email });
-    if (user) {
+    let user = await readDocuments('Users', { email: email });
+    if (user[0]) {
         res.statusCode = 401;
         res.json("Email already in use by another account")
     }
@@ -19,13 +16,10 @@ const register = async function(req, res) {
         let newUser = {
             username: username,
             email: email,
-            password: hashPassword,
-            access_token: uuidv4()
+            password: hashPassword
         };
-        let result = await collection.insertOne(newUser);
-        if (result){
-            res.json("Account Created! Please login now.");
-        }
+        let result = await createDocument('Users', newUser);
+        res.json(result);
     }
 }
 

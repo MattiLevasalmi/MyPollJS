@@ -7,7 +7,6 @@ import Divider from "@mui/material/Divider";
 import { useState } from "react";
 import axios from "axios";
 
-
 export default function AnswerPoll(){
 
     type vote = {
@@ -20,7 +19,7 @@ export default function AnswerPoll(){
     const [votes, setVotes] = useState<vote[]>([]);
 
     const submitVotes = () => {
-        axios.put("https://pollapi.vercel.app/polls", { 
+        axios.put(`${process.env.route}/polls`, { 
             votes: votes,
             poll: state._id
         }).then((response) => {

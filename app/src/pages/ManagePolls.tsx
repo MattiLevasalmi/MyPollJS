@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { poll, useAuthContext } from "./context";
+import { poll, useAuthContext } from "../context/context";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -19,7 +19,7 @@ export default function ManagePolls(){
     const [logoutSuccess, setLogoutSuccess] = useState(false);
 
     const getPolls = () => {
-        axios.get(`${process.env.route}/polls/owner/${ID}`).then((response) => {
+        axios.get(`http://localhost:3000/polls/owner/${ID}`).then((response) => {
             setPolls(response.data);
             handleClose();
         }).catch((error) => {
@@ -49,7 +49,7 @@ export default function ManagePolls(){
     }, [logoutSuccess]);
 
     return(
-        <>
+        <div className="manage-polls">
             <Backdrop open={open}>
                 <CircularProgress color="inherit" />
             </Backdrop>
@@ -58,15 +58,9 @@ export default function ManagePolls(){
                 {polls.map((poll, index) => 
                     <ListPoll key={index} poll={poll}/> 
                 )}
-            
-            <Stack direction="row" justifyContent="space-around">
-                <button onClick={() => navigate('/')}>Home</button>
-                <button onClick={() => navigate('/createPoll')}>Create New Poll</button>
-                <button onClick={() => logout()}>Log Out</button>
+            <button onClick={() => navigate('/createPoll')}>Create New Poll</button>
             </Stack>
-            
-            </Stack>
-        </>   
+        </div>   
     )
 }
 

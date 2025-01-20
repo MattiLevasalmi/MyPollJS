@@ -1,12 +1,10 @@
-import { getDatabase } from '../db/dbConnection.js';
+import { readDocuments } from '../contollers/crud.js';
 
 const getPollbyId = async function(req, res) {
     var ownerId = req.params.id;
 
-    const db = getDatabase();
-    const collection = db.collection('Polls');
-    var polls = await collection.find( { ownerID: ownerId } ).toArray();
-    if (polls) {
+    var polls = await readDocuments('Polls', { ownerID: ownerId });
+    if (polls.length != 0) {
         res.json(polls);
     }
 }

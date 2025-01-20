@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import './Register.css';
+import { Paper, Stack, TextField } from "@mui/material";
 
 
 export default function Register() {
@@ -45,18 +47,21 @@ export default function Register() {
     };
 
     return(
-        <div>
+        <div className="register">
             <Backdrop open={open}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <button onClick={() => navigate('/')}>Home</button>
-            <h1>Register to Polls R Us</h1>
-            <form onSubmit={submitRegister}>
-                <p><input type="username" id="username" placeholder="username" required></input></p> 
-                <p><input type="email" id="email" placeholder="email" required></input></p>
-                <p><input type="password" id="password" placeholder="password" required></input></p>
-                <p><button type="submit">Register</button></p>
-            </form>
+            <Paper className="paper">
+                <h1>Register to MyPollJS</h1>
+                <form onSubmit={submitRegister}>
+                    <Stack spacing={2}>
+                        <TextField type="username" id="username" placeholder="username" required />
+                        <TextField type="email" id="email" placeholder="email" required />
+                        <TextField type="password" id="password" placeholder="password" required />
+                        <p><button type="submit">Register</button></p>
+                    </Stack>
+                </form>
+            </Paper>
         </div>
     )
 }

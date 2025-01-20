@@ -1,9 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuthContext } from "./context";
+import { useAuthContext } from "../context/context";
 import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState } from "react";
+import './Login.css';
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
 
 export default function Login(){
 
@@ -26,10 +30,10 @@ export default function Login(){
     }
     
     const doLogin = (email: string, password: string) => {
-        axios.post(`${process.env.route}/login`, {
+        axios.post(`http://localhost:3000/login`, {
             email: email, password: password
         }).then((response) => {
-            setAuthToken(response.data.access_token);
+            setAuthToken(response.data.token);
             setID(response.data.id);
             handleClose();
             setIsLoginSuccess(true);
@@ -57,14 +61,17 @@ export default function Login(){
             <Backdrop open={open}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <button onClick={() => navigate('/')}>Home</button>
-            <h1>Login to Polls R Us</h1>
-            <form onSubmit={submitLogin}>
-                <p><input type="email" id="email" placeholder="email" required></input></p>
-                <p><input type="password" id="password" placeholder="password" required></input></p>
-                <p><button type="submit">Login</button></p>
-            </form>
-            <button onClick={() => navigate('/register', { state: state })}>Go to Registration</button>
+            <Paper className="paper">
+                <h1>Login to MyPollJS</h1>
+                <form onSubmit={submitLogin}>
+                    <Stack spacing={2}>
+                        <TextField type="email" id="email" placeholder="email" required />
+                        <TextField type="password" id="password" placeholder="password" required />
+                    </Stack>
+                    <p><button type="submit">Login</button></p>
+                    <button onClick={() => navigate('/register', { state: state })}>Go to Registration</button>
+                </form>
+            </Paper>
         </div>
     )
 }

@@ -1,0 +1,10 @@
+.register {
+    
+}
+
+.paper {
+    flex-direction: column;
+    padding: 20px;
+    width: 400px;
+    margin: 20px auto;
+}

@@ -1,22 +1,35 @@
 import bcrypt from 'bcrypt';
-import { getDatabase } from '../db/dbConnection.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import { readDocuments } from '../contollers/crud.js';
+
+dotenv.config();
 
 const login = async function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
 
-    const db = getDatabase();
-    const collection = db.collection('Users');
-    const user = await collection.findOne({ email: email });
-    if (!user) {
+    const results = await readDocuments('Users', { email: email });
+    if (results.length == 0) {
         res.statusCode = 401;
         res.json("No account could be found linked to inputted email, please check input or register a new account");
+        return;
     }
-    else {
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (passwordMatch) {
+
+    const user = results[0];
+    await bcrypt.compare(password, user.password, (err, result) => {
+        if (err) {
+            console.error("Error comparing passwords ", err);
+            return;
+        }
+        else if (result){
+            const payload = {
+                username: user.username,
+                id: user._id
+            }
+            const token = jwt.sign(payload, process.env.JWTpass, {expiresIn: '2h'});
             res.json({
-                "access_token": user.access_token,
+                "token": token,
                 "id": user._id
             });
         }
@@ -24,7 +37,7 @@ const login = async function(req, res) {
             res.statusCode = 401;
             res.json("Incorrect Password");
         }
-    }
+    });
 }
 
 export default login;

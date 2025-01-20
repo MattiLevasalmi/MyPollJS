@@ -2,13 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import login from './endpoints/login.js';
-import register from './endpoints/register.js';
-import createPoll from './endpoints/createPoll.js';
-import getPoll from './endpoints/getPoll.js';
-import getPollbyId from './endpoints/getPollbyId.js';
-import getPollbyPollId from './endpoints/getPollbyPollId.js';
-import answerPoll from './endpoints/answerPoll.js';
+import login from './endpoints/login.js'; //todo
+import register from './endpoints/register.js'; //todo
+import createPoll from './endpoints/createPoll.js'; //todo
+import getPoll from './endpoints/getPoll.js'; //todo
+import getPollbyId from './endpoints/getPollbyId.js'; //todo
+import getPollbyPollId from './endpoints/getPollbyPollId.js'; //todo
+import answerPoll from './endpoints/answerPoll.js'; //todo
 
 dotenv.config();
 const app = express();

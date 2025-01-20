@@ -52,7 +52,7 @@ export default function CreatePoll(){
     }
 
     const postPoll = (pollName: string, pollDesc: string, questions: question[]) => {
-        axios.post("https://pollapi.vercel.app/polls", {
+        axios.post(`${process.env.route}/polls`, {
             pollName: pollName, ownerID: ID, pollDesc: pollDesc, questions: questions
         }).then((response) => {
             console.log(response);

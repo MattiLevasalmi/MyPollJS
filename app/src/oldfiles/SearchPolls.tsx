@@ -17,7 +17,7 @@ export default function SearchPolls(){
     const [open, setOpen] = useState(true);
 
     const getPolls = () => {
-        axios.get("http://localhost:3000/polls").then((response) => {
+        axios.get(`${process.env.route}/polls`).then((response) => {
             setPolls(response.data);
             handleClose();
         }).catch((error) => {

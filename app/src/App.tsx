@@ -1,15 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Start from './pages/Start'
-import Login from './oldfiles/Login'
-import { authContext, poll } from './oldfiles/context'
-import { useState } from 'react'
-import ManagePolls from './oldfiles/ManagePolls'
+import Login from './pages/Login'
+import ManagePolls from './pages/ManagePolls'
 import CreatePoll from './oldfiles/CreatePoll'
 import ViewPoll from './oldfiles/ViewPoll'
 import SearchPolls from './oldfiles/SearchPolls'
 import AnswerPoll from './oldfiles/AnswerPoll'
-import Register from './oldfiles/Register'
+import Register from './pages/Register'
+import { authContext, poll } from './context/context'
+import { useState } from 'react'
 
 
 function App() {
@@ -25,22 +25,34 @@ function App() {
           <Route
             path="/"
             element={
-            <>
-              <Header title={"MyPollJS"} subtitle={"Home Page"}/>
-              <Start />
-            </>}
+              <>
+                <Header title={"MyPollJS"} subtitle={"Home Page"}/>
+                <Start />
+              </>}
           />
           <Route
             path="/Login"
-            element={<Login />}
+            element={
+              <>
+                <Header title={"MyPollJS"} subtitle={"Login Page"}/>
+                <Login />
+              </>}
           />
           <Route
             path="/register"
-            element={<Register />}
+            element={
+              <>
+                <Header title={"MyPollJS"} subtitle={"Registration Page"}/>
+                <Register />
+              </>}
           />
           <Route
             path="/managePolls"
-            element={<ManagePolls />}
+            element={
+              <>
+                <Header title={"MyPollJS"} subtitle={"Manage Polls Page"}/>
+                <ManagePolls />
+              </>}
           />
           <Route
             path="/createPoll"
