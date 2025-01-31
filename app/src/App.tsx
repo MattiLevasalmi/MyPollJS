@@ -4,7 +4,7 @@ import Start from './pages/Start'
 import Login from './pages/Login'
 import ManagePolls from './pages/ManagePolls'
 import CreatePoll from './oldfiles/CreatePoll'
-import ViewPoll from './oldfiles/ViewPoll'
+import ViewPoll from './pages/ViewPoll'
 import SearchPolls from './oldfiles/SearchPolls'
 import AnswerPoll from './oldfiles/AnswerPoll'
 import Register from './pages/Register'
@@ -26,7 +26,7 @@ function App() {
             path="/"
             element={
               <>
-                <Header title={"MyPollJS"} subtitle={"Home Page"}/>
+                <Header title={"MyPollJS"} subtitle={"Home"}/>
                 <Start />
               </>}
           />
@@ -34,7 +34,7 @@ function App() {
             path="/Login"
             element={
               <>
-                <Header title={"MyPollJS"} subtitle={"Login Page"}/>
+                <Header title={"MyPollJS"} subtitle={"Login"}/>
                 <Login />
               </>}
           />
@@ -42,7 +42,7 @@ function App() {
             path="/register"
             element={
               <>
-                <Header title={"MyPollJS"} subtitle={"Registration Page"}/>
+                <Header title={"MyPollJS"} subtitle={"Registration"}/>
                 <Register />
               </>}
           />
@@ -50,7 +50,7 @@ function App() {
             path="/managePolls"
             element={
               <>
-                <Header title={"MyPollJS"} subtitle={"Manage Polls Page"}/>
+                <Header title={"MyPollJS"} subtitle={"Manage Polls"}/>
                 <ManagePolls />
               </>}
           />
@@ -60,7 +60,11 @@ function App() {
           />
           <Route
             path="/viewPoll"
-            element={<ViewPoll />}
+            element={
+              <>
+                <Header title={"MyPollJS"} subtitle={"Poll Results"}/>
+                <ViewPoll />
+              </>}
           />
           <Route
             path="/searchPolls"

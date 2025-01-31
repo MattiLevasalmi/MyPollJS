@@ -7,16 +7,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import './ManagePolls.css'
+import Button from "@mui/material/Button";
 
 
 export default function ManagePolls(){
     const navigate = useNavigate();
 
-    const { ID, setID, setAuthToken } = useAuthContext();
+    const { ID } = useAuthContext();
 
     const [polls, setPolls] = useState<poll[]>([]);
     const [open, setOpen] = useState(true);
-    const [logoutSuccess, setLogoutSuccess] = useState(false);
 
     const getPolls = () => {
         axios.get(`http://localhost:3000/polls/owner/${ID}`).then((response) => {
@@ -28,11 +29,6 @@ export default function ManagePolls(){
         })
     }
 
-    const logout = () => {
-        setAuthToken("");
-        setID("");
-        setLogoutSuccess(true);
-    }
 
     const handleClose = () => {
         setOpen(false);
@@ -42,11 +38,6 @@ export default function ManagePolls(){
         getPolls();
     },[]);
 
-    useEffect(() => {
-        if (logoutSuccess) {
-            navigate('/');
-        }
-    }, [logoutSuccess]);
 
     return(
         <div className="manage-polls">
@@ -58,7 +49,7 @@ export default function ManagePolls(){
                 {polls.map((poll, index) => 
                     <ListPoll key={index} poll={poll}/> 
                 )}
-            <button onClick={() => navigate('/createPoll')}>Create New Poll</button>
+            <Button variant="outlined" onClick={() => navigate('/createPoll')}>Create New Poll</Button>
             </Stack>
         </div>   
     )
@@ -71,14 +62,15 @@ function ListPoll(props: poll | any){
 
     return (
          <Paper sx={{ m: 2, p: 2 }}>
-            <Stack direction="row" spacing={3} justifyContent="space-between">
-                <Stack>
-                    <Typography>Name: {props.poll.pollName}</Typography>
+            <Stack direction="row" spacing={3} justifyContent="space-between" alignItems="center">
+                <Stack spacing={2}>
+                    <Typography variant="h5">{props.poll.pollName}</Typography>
                     <Typography>ID: {props.poll._id}</Typography>
-                    <Typography>Description: {props.poll.pollDesc}</Typography>
                 </Stack>
+                <Typography>{props.poll.pollDesc}</Typography>
                 <Stack spacing={1}>
-                    <button onClick={() => navigate('/viewPoll', {state: props.poll})}>View Poll</button>
+                    <Button variant="outlined" onClick={() => navigate('/viewPoll', {state: props.poll})}>View Poll</Button>
+                    <Button variant="outlined" onClick={() => alert("Sorry, This feature is not implemented yet")}>Edit Poll</Button>
                 </Stack>
             </Stack>
         </Paper>

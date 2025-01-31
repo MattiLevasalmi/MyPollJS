@@ -4,10 +4,11 @@ import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState } from "react";
-import './Login.css';
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import './Login.css';
 
 export default function Login(){
 
@@ -61,15 +62,17 @@ export default function Login(){
             <Backdrop open={open}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Paper className="paper">
+            <Paper className="logpaper">
                 <h1>Login to MyPollJS</h1>
                 <form onSubmit={submitLogin}>
-                    <Stack spacing={2}>
+                    <Stack>
                         <TextField type="email" id="email" placeholder="email" required />
                         <TextField type="password" id="password" placeholder="password" required />
                     </Stack>
-                    <p><button type="submit">Login</button></p>
-                    <button onClick={() => navigate('/register', { state: state })}>Go to Registration</button>
+                    <Stack direction="row" justifyContent="space-around">
+                        <Button variant="outlined" type="submit">Login</Button>
+                        <Button variant="outlined" onClick={() => navigate('/register', {state: state})}>Go to Registration</Button>
+                    </Stack>
                 </form>
             </Paper>
         </div>

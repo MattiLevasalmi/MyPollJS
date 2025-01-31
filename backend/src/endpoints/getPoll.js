@@ -1,9 +1,7 @@
-import { getDatabase } from '../db/dbConnection.js';
+import { readDocuments } from '../contollers/crud.js';
 
 const getPoll = async function(req, res) {
-    const db = getDatabase();
-    const collection = db.collection('Polls');
-    var polls = await collection.find().toArray();
+    var polls = await readDocuments('Polls', {})
     if (polls) {
         res.json(polls);
     }
