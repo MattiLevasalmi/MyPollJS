@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Stack from "@mui/material/Stack";
 import { poll, useAuthContext } from '../context/context';
 import { useNavigate } from 'react-router-dom';
@@ -15,10 +15,10 @@ export default function Start() {
         <>
             <div className='sectionOne'>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} md={12} lg={5}>
+                    <Grid size={{xs: 12, md: 12, lg: 5}}>
                         <img src={picOne}/>
                     </Grid>
-                    <Grid item xs={12} md={12} lg={6}>
+                    <Grid size={{xs: 12, md: 12, lg: 6}}>
                         <AnswerPoll/>
                     </Grid>
                 </Grid>
@@ -80,14 +80,14 @@ function AnswerPoll() {
             <>
                 <Typography variant='h3'>Answer a Poll</Typography>
                 <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid size={{xs: 6}}>
                         <Typography variant='body1'>Here you can enter a poll id to be taken to the poll's answering page</Typography>
                         <form onSubmit={joinPoll}>
                             Enter Poll ID: <input type="text" id="pollId" required></input>
                             <button type="submit">Join Poll</button>
                         </form>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid size={{xs: 6}}>
                         <Typography variant='body1'>Or you can click "Search for a Poll" to see a list of all the public polls</Typography>
                         <button onClick={() => navigate('/searchPolls')}>Search for a Poll</button>
                     </Grid>

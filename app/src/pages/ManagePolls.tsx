@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import './ManagePolls.css'
+import './ManagePolls.css';
 import Button from "@mui/material/Button";
 
 
@@ -20,7 +20,7 @@ export default function ManagePolls(){
     const [open, setOpen] = useState(true);
 
     const getPolls = () => {
-        axios.get(`http://localhost:3000/polls/owner/${ID}`).then((response) => {
+        axios.get(`${import.meta.env.VITE_BACKEND_URI}/polls/owner/${ID}`).then((response) => {
             setPolls(response.data);
             handleClose();
         }).catch((error) => {

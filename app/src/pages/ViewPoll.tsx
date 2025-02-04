@@ -4,6 +4,8 @@ import { question } from "../context/context";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import './ViewPoll.css';
+import Grid from "@mui/material/Grid2";
 
 
 export default function ViewPoll() {
@@ -12,7 +14,7 @@ export default function ViewPoll() {
     const navigate = useNavigate();
 
     return (
-        <>
+        <div className="ViewPoll">
             <h1>{state.pollName}</h1>
             <Stack spacing={3}>
                 
@@ -24,7 +26,7 @@ export default function ViewPoll() {
                     <button onClick={() => navigate('/')}>Home</button>
                 </Stack>
             </Stack>
-        </>
+        </div>
     )
 }
 
@@ -34,22 +36,28 @@ function ShowQuestion(props: question | any) {
             <Stack spacing={2}>
                 <Typography>{props.ques.question}</Typography>
                 <Divider variant="middle"/>
-                <Stack direction="row" spacing={5} justifyContent="space-around" alignItems="center">
-                    <Stack spacing={1}>
-                        <Typography>{props.ques.answers[0].answer}</Typography>
-                        <Typography>{props.ques.answers[0].count}</Typography>
-                    </Stack>
-                    {props.ques.answers[0].count == props.ques.answers[1].count ? 
-                        <Typography variant="h2">{"="}</Typography> :
-                        props.ques.answers[0].count > props.ques.answers[1].count ?
-                            <Typography variant="h2">{">"}</Typography> :
-                            <Typography variant="h2">{"<"}</Typography>
-                    }
-                    <Stack spacing={1}>
-                        <Typography>{props.ques.answers[1].answer}</Typography>
-                        <Typography>{props.ques.answers[1].count}</Typography>
-                    </Stack>
-                </Stack>
+                <Grid container>
+                    <Grid size={5}>
+                        <Stack spacing={1}>
+                            <Typography>{props.ques.answers[0].answer}</Typography>
+                            <Typography>{props.ques.answers[0].count}</Typography>
+                        </Stack>
+                    </Grid>
+                    <Grid size={2}>
+                        {props.ques.answers[0].count == props.ques.answers[1].count ? 
+                            <Typography variant="h2">{"="}</Typography> :
+                            props.ques.answers[0].count > props.ques.answers[1].count ?
+                                <Typography variant="h2">{">"}</Typography> :
+                                <Typography variant="h2">{"<"}</Typography>
+                        }
+                    </Grid>
+                    <Grid size={5}>
+                        <Stack spacing={1}>
+                            <Typography>{props.ques.answers[1].answer}</Typography>
+                            <Typography>{props.ques.answers[1].count}</Typography>
+                        </Stack>
+                    </Grid>
+                </Grid>
             </Stack>
             
         </Paper>

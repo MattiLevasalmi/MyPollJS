@@ -31,7 +31,7 @@ export default function Login(){
     }
     
     const doLogin = (email: string, password: string) => {
-        axios.post(`http://localhost:3000/login`, {
+        axios.post(`${import.meta.env.VITE_BACKEND_URI}/login`, {
             email: email, password: password
         }).then((response) => {
             setAuthToken(response.data.token);

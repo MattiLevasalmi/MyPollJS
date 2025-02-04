@@ -27,7 +27,7 @@ export default function Register() {
     }
 
     const doRegister = (username: string, email: string, password: string) => {
-        axios.post(`http://localhost:3000/register`, {
+        axios.post(`${import.meta.env.VITE_BACKEND_URI}/register`, {
             username: username, email: email, password: password
         }).then((response) => {
             handleClose();
