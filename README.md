@@ -8,8 +8,8 @@ Currently, there are two branches, dev and main. Main is the version that is cur
 I plan to merge the branches once I have refined the design and architecture, then I will add new features and continue with any beneficial changes or refinements.
 
 # Getting Started
-1. If you would like to use the current site as designed in the main branch, you can go to mypolljs.vercel.app and answer any polls created by myself or others, or you can create your own account and make your own polls, which you can share with others or leave for other visitors to find.
-2. If you would like to see the progress with my next set of changes you can check out the dev branch.
+1. If you would like to use the current site as designed in the main branch, you can go to https://mypolljs.vercel.app and answer any polls created by myself or others, or you can create your own account and make your own polls, which you can share with others or leave for other visitors to find.
+2. If you would like to see the progress with my next set of changes you can check out the dev branch. It can also be used through https://mypolljs-git-dev-mattis-projects-e78a043f.vercel.app although some pages may not be usable at the moment.
 
 # Build and Test
 1. If you clone the project, you will likely need to run npm install or npm i before running
